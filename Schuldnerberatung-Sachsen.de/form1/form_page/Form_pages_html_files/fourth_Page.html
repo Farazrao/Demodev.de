@@ -1,0 +1,1539 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>P-Konto als pfändungsfreies Konto mit erhöhtem Freibetrag.</title>
+
+    <meta name="description" content="Hier erhalten Sie die P-Konto Bescheinigung zum Schutz bei Kontopfändungen." />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="robots" content="index, follow" />
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="../../../bundles/form_css/default.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.2.3/jspdf.plugin.autotable.min.js"></script>
+
+    <script src="../../../modules/js/head.min.js"></script>
+
+    <!-- Start of rechtsanwalt-postulka Zendesk Widget script -->
+    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=e1ca9440-ea0d-409c-aa66-ca78e3d641bb"> </script>
+    <!-- End of rechtsanwalt-postulka Zendesk Widget script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.c om/ajax/libs/jspdf/1.4.1/jspdf.debug.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.4/jspdf.plugin.autotable.min.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+            integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+    ></script>
+
+    <style type="text/css">
+        body,
+        div,
+        table,
+        thead,
+        tbody,
+        tfoot,
+        tr,
+        th,
+        td,
+        p {
+            font-family: "Arial";
+            font-size: x-small;
+        }
+        a.comment-indicator:hover + comment {
+            background: #ffd;
+            position: absolute;
+            display: block;
+            border: 1px solid black;
+            padding: 0.5em;
+        }
+        a.comment-indicator {
+            background: red;
+            display: inline-block;
+            border: 1px solid black;
+            width: 0.5em;
+            height: 0.5em;
+        }
+        comment {
+            display: none;
+        }
+        .sorttable_sorted,
+        .sorttable_sorted_reverse,
+        table.sortable
+        thead
+        td:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(
+          .sorttable_nosort
+        ) {
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        table.sortable
+        thead
+        td:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(
+          .sorttable_nosort
+        ):after {
+            content: " \25B4\25BE";
+        }
+    </style>
+    </style>
+</head>
+<body>
+<?php require 'insert.php'  ;
+?>
+
+<div id="header" class="header">
+    <img class="logo" src="../../../assets/main_page_img/logo%20(1).png" /> <a class="b" href="http://localhost:63342/Demodev.de/Schuldnerberatung-Sachsen.de/index.html">Schuldnerberatung</a>
+</div>
+<div id="content" class="content">
+
+
+
+    <div class="row collapse make-relative">
+
+
+        <div class="small-12 medium-10 large-9 medium-centered columns">
+            <div class="row collapse content-wrapper">
+                <div class="small-12 columns">
+                    <script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
+                    <!--<script src = "/Schuldnerberatung-Sachsen.de/jspdf_files/js_Table.html"></script>-->
+                    <button onclick="generatePDF()" id="abc">click</button>
+
+                    <!-- style="display: none" -->
+                    <table id="table" align="left" cellspacing="0" border="0" >
+                        <colgroup width="104"></colgroup>
+                        <colgroup width="21"></colgroup>
+                        <colgroup width="73"></colgroup>
+                        <colgroup width="69"></colgroup>
+                        <colgroup width="59"></colgroup>
+                        <colgroup width="70"></colgroup>
+                        <colgroup width="106"></colgroup>
+                        <colgroup width="66"></colgroup>
+                        <colgroup width="78"></colgroup>
+                        <colgroup width="91"></colgroup>
+                        <colgroup width="79"></colgroup>
+                        <tr>
+                            <td colspan="10" height="38" align="center" valign="middle" style="text-align: center" >
+                                <font size="6">
+                                    <strong> B e s c h e i n i g u n g </strong>
+                                </font>
+                            </td>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="10" height="19" align="center" valign="middle" style="text-align: center" >
+                                <font size="2">
+                                    nach &sect; 903 Abs. 1 ZPO &uuml;ber die gem&auml;&szlig;
+                                    &sect;&sect; 902 und 904 ZPO
+                                </font>
+                            </td>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="10" height="19" align="center" valign="middle" style="text-align: center">
+                                <font size="2">
+                                    von der Pf&auml;ndung nicht erfassten Betr&auml;ge auf einem
+                                    Pf&auml;ndungsschutzkonto
+                                </font>
+                            </td>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                        <tr>
+                            <td
+                                    style="
+            border-top: 2px solid #000000;
+            border-left: 2px solid #000000;
+            border-right: 1px solid #000000;
+          "
+                                    rowspan="10"
+                                    height="180"
+                                    align="left"
+                                    valign="top"
+                            >
+                                <b
+                                ><font size="1"
+                                >I. <br />
+                                    Bezeichnung der bescheinigenden Person oder Stelle nach &sect; 903
+                                    Abs. 1 Satz 2 ZPO</font
+                                ></b
+                                >
+                            </td>
+                            <td
+                                    style="
+            border-top: 2px solid #000000;
+            border-bottom: 1px solid #000000;
+            border-right: 1px solid #000000;
+          "
+                                    colspan="2"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <font size="1">Name</font>
+                            </td>
+                            <td
+                                    style="
+            border-top: 2px solid #000000;
+            border-bottom: 1px solid #000000;
+            border-right: 2px solid #000000;
+          "
+                                    colspan="7"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <b>Rechtsanwalt Christian Sch&ouml;neburg</b>
+                            </td>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                        <tr>
+                            <td
+                                    style="
+            border-top: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+            border-left: 1px solid #000000;
+            border-right: 1px solid #000000;
+          "
+                                    colspan="2"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <font size="1">Stra&szlig;e</font>
+                            </td>
+                            <td
+                                    style="
+            border-top: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+            border-left: 1px solid #000000;
+            border-right: 1px solid #000000;
+          "
+                                    colspan="5"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <b>Max-Sauerlandt-Ring</b>
+                            </td>
+                            <td
+                                    style="
+            border-top: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+            border-left: 1px solid #000000;
+            border-right: 1px solid #000000;
+          "
+                                    align="right"
+                                    valign="middle"
+                            >
+                                <font size="1">Hausnummer</font>
+                            </td>
+                            <td
+                                    style="
+            border-top: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+            border-right: 2px solid #000000;
+          "
+                                    align="center"
+                                    valign="middle"
+                                    sdval="3"
+                                    sdnum="1033;0;0"
+                            >
+                                <b>3</b>
+                            </td>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                        <tr>
+                            <td
+                                    style="
+            border-top: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+            border-left: 1px solid #000000;
+            border-right: 1px solid #000000;
+          "
+                                    colspan="2"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <font size="1">Postleitzahl</font>
+                            </td>
+                            <td
+                                    style="
+            border-top: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+          "
+                                    align="left"
+                                    valign="middle"
+                                    sdnum="1033;0;@"
+                            >
+                                <b>06120 </b>
+                            </td>
+                            <td
+                                    style="
+            border-top: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+            border-left: 1px solid #000000;
+            border-right: 1px solid #000000;
+          "
+                                    align="right"
+                                    valign="middle"
+                            >
+                                <font size="1">Ort </font>
+                            </td>
+                            <td
+                                    style="
+            border-top: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+            border-right: 2px solid #000000;
+          "
+                                    colspan="5"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <b>Halle</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                    style="
+            border-top: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+            border-left: 1px solid #000000;
+            border-right: 1px solid #000000;
+          "
+                                    colspan="2"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <font size="1">Ansprechpartner:in</font>
+                            </td>
+                            <td
+                                    style="
+            border-top: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+            border-left: 1px solid #000000;
+            border-right: 2px solid #000000;
+          "
+                                    colspan="7"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <b><br /></b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                    style="border-top: 1px solid #000000; border-right: 2px solid #000000"
+                                    colspan="9"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <b>Die Bescheinigung wird erteilt als</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="middle">
+                                <font size="1"
+                                ><div
+                                        style="
+                height: 10px;
+                width: 10px;
+                border: 1px solid #000;
+                margin-left: 3px;
+              "
+                                /></font>
+                            </td>
+                            <td colspan="3" align="left" valign="middle">
+                                <font size="1"
+                                >geeignete Stelle gem&auml;&szlig; &sect; 305 Abs. 1 Nr. 1
+                                    InsO</font
+                                >
+                            </td>
+                            <td align="left" valign="middle">
+                                <font size="1">
+                                    <div
+                                            style="
+                height: 10px;
+                width: 10px;
+                border: 1px solid #000;
+                margin-left: 50px;
+              "
+                                    /></font>
+                            </td>
+                            <td colspan="3" align="left" valign="middle">
+                                <font size="1">
+                                    geeignete Person gem&auml;&szlig; &sect; 305 Abs. 1 Nr. 1 InsO</font
+                                >
+                            </td>
+                            <td
+                                    style="border-right: 2px solid #000000"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <font size="1"><br /></font>
+                            </td>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="middle">
+                                <font size="1"><br /></font>
+                            </td>
+                            <td colspan="2" align="left" valign="middle">
+                                <font size="1">Anerkennende Beh&ouml;rde/ Gericht: </font>
+                            </td>
+                            <td align="left" valign="middle">
+                                <font size="1"><br /></font>
+                            </td>
+                            <td
+                                    style="
+            border-bottom: 1px solid #000000;
+            border-right: 2px solid #000000;
+          "
+                                    colspan="5"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <b><br /></b>
+                            </td>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="middle">
+                                <font size="1"><br /></font>
+                            </td>
+                            <td
+                                    style="
+            border-bottom: 1px solid #000000;
+            border-right: 2px solid #000000;
+          "
+                                    colspan="8"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <b><br /></b>
+                            </td>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                        <tr>
+                            <td
+                                    style="border-bottom: 1px solid #000000"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <font size="1"><br /></font>
+                            </td>
+                            <td
+                                    colspan="2"
+                                    style="border-bottom: 1px solid #000000"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <font size="1">Datum des Bescheides: </font>
+                            </td>
+                            <td
+                                    style="border-bottom: 1px solid #000000"
+                                    colspan="2"
+                                    align="center"
+                                    valign="middle"
+                                    sdnum="1033;0;M/D/YYYY"
+                            >
+                                <b
+                                ><font size="1"><br /></font
+                                ></b>
+                            </td>
+                            <td
+                                    style="border-bottom: 1px solid #000000"
+                                    align="right"
+                                    valign="middle"
+                            >
+                                <font size="1">Aktenzeichen:</font>
+                            </td>
+                            <td
+                                    style="
+            border-bottom: 1px solid #000000;
+            border-right: 2px solid #000000;
+          "
+                                    colspan="3"
+                                    align="center"
+                                    valign="middle"
+                            >
+                                <b
+                                ><font size="1"><br /></font
+                                ></b>
+                            </td>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="middle">
+                                <font size="1">
+                                    <div
+                                            style="
+                height: 10px;
+                width: 10px;
+                border: 1px solid #000;
+                margin-left: 3px;
+              "
+                                    />
+                                </font>
+                            </td>
+                            <td style="border-top: 1px solid #000000" align="left" valign="middle">
+                                <font size="1">Arbeitgeber</font>
+                            </td>
+                            <td
+                                    align="left"
+                                    valign="middle"
+                                    style="display: flex; align-items: center; margin-top: 2px"
+                            >
+                                <div
+                                        style="
+              height: 10px;
+              width: 10px;
+              border: 1px solid #000;
+              margin-left: 3px;
+              margin-right: 3px;
+            "
+                                ></div>
+                                <font size="1">Sozialleistungstr&auml;ger</font>
+                            </td>
+                            <td align="left" valign="bottom">
+                                <br />
+                            </td>
+                            <td
+                                    colspan="2"
+                                    style="border-top: 1px solid #000000"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <div style="display: flex">
+                                    <div
+                                            style="
+                height: 10px;
+                width: 10px;
+                border: 1px solid #000;
+                margin-left: 3px;
+                margin-right: 3px;
+              "
+                                    ></div>
+                                    <font size="1"> sonstiger Leistungstr&auml;ger </font>
+                                </div>
+                            </td>
+                            <td style="border-top: 1px solid #000000" align="left" valign="middle">
+                                <font size="1"><br /></font>
+                            </td>
+                            <td
+                                    style="border-top: 1px solid #000000; border-right: 2px solid #000000"
+                                    colspan="2"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <div style="display: flex">
+                                    <div
+                                            style="
+                height: 10px;
+                width: 10px;
+                border: 1px solid #000;
+                margin-left: 3px;
+                margin-right: 3px;
+              "
+                                    ></div>
+                                    <font size="1"> Familienkasse</font>
+                                </div>
+                            </td>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                        <tr>
+                            <td
+                                    style="
+            border-top: 2px solid #000000;
+            border-left: 2px solid #000000;
+            border-right: 1px solid #000000;
+          "
+                                    rowspan="6"
+                                    height="86"
+                                    align="left"
+                                    valign="top"
+                            >
+                                <b
+                                ><font size="1"
+                                >II. <br />
+                                    Angaben zum Kontoinhaber und Pf&auml;ndungsschutz-konto
+                                </font></b
+                                >
+                            </td>
+                            <td
+                                    style="border-top: 2px solid #000000"
+                                    colspan="2"
+                                    rowspan="2"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <font size="1">Kontoinhaber:in</font>
+                            </td>
+
+                            <td
+                                    style="
+            border-top: 2px solid #000000;
+            border-left: 1px solid #000000;
+            border-right: 1px solid #000000;
+          "
+                                    colspan="5"
+                                    rowspan="2"
+                                    align="left"
+                                    valign="bottom"
+                                    id="test4"
+                            >
+                                <b><br /></b>
+                            </td>
+                            <td
+                                    style="
+            border-top: 2px solid #000000;
+            border-left: 1px solid #000000;
+            border-right: 1px solid #000000;
+          "
+                                    rowspan="2"
+                                    align="right"
+                                    valign="middle"
+                            >
+                                <font size="1">Geburtsdatum</font>
+                            </td>
+                            <td
+                                    style="
+            border-top: 2px solid #000000;
+            border-bottom: 1px solid #000000;
+            border-right: 2px solid #000000;
+          "
+                                    rowspan="2"
+                                    align="center"
+                                    valign="bottom"
+                                    sdnum="1033;0;M/D/YYYY"
+                                    id="test5"
+                            >
+                                <b><br /></b>
+                            </td>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                        <tr>
+                            <td
+                                    style="
+            border-top: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+            border-right: 1px solid #000000;
+          "
+                                    colspan="2"
+                                    rowspan="2"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <font size="1">Anschrift</font>
+                            </td>
+                            <td
+                                    style="
+            border-top: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+            border-right: 2px solid #000000;
+          "
+                                    colspan="7"
+                                    rowspan="2"
+                                    align="left"
+                                    valign="bottom"
+                                    id="test1">
+                                <b><br /></b>
+                            </td>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                        <tr>
+                            <td
+                                    style="
+            border-top: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+            border-right: 1px solid #000000;
+          "
+                                    colspan="2"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <font size="1">Kreditinstitut</font>
+                            </td>
+                            <td
+                                    style="
+            border-top: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+            border-right: 2px solid #000000;
+          "
+                                    colspan="7"
+                                    align="left"
+                                    valign="bottom"
+                                    id="test2"
+                            >
+                                <b><br /></b>
+                            </td>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                        <tr>
+                            <td
+                                    style="border-top: 1px solid #000000; border-right: 1px solid #000000"
+                                    colspan="3"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <font size="1">Kontonummer oder IBAN</font>
+                            </td>
+                            <td
+                                    style="border-right: 2px solid #000000"
+                                    colspan="6"
+                                    align="left"
+                                    valign="bottom"
+                                    id="test3" >
+                                <b><br /></b>
+                            </td>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                        <tr>
+                            <td
+                                    style="
+            border-top: 2px solid #000000;
+            border-bottom: 2px solid #000000;
+            border-left: 2px solid #000000;
+            border-right: 1px solid #000000;
+          "
+                                    rowspan="10"
+                                    height="150"
+                                    align="left"
+                                    valign="top"
+                            >
+                                <b
+                                ><font size="1"
+                                >III. <br />
+                                    Ermittlung des pf&auml;ndungsfreien Betrages
+                                </font></b
+                                >
+                            </td>
+                            <td
+                                    style="border-top: 2px solid #000000; border-left: 1px solid #000000"
+                                    rowspan="2"
+                                    align="center"
+                                    valign="bottom"
+                            >
+                                <br />
+                            </td>
+                            <td
+                                    style="border-top: 2px solid #000000"
+                                    colspan="6"
+                                    align="left"
+                                    valign="bottom"
+                            >
+                                <b
+                                ><font size="1"
+                                >Grundfreibetrag des Schuldners (= Kontoinhaber) derzeit1
+                                </font></b
+                                >
+                            </td>
+                            <td
+                                    style="border-top: 2px solid #000000; border-right: 1px solid #000000"
+                                    align="left"
+                                    valign="bottom"
+                            >
+                                <br />
+                            </td>
+                            <td
+                                    style="border-top: 2px solid #000000; border-right: 2px solid #000000"
+                                    rowspan="2"
+                                    align="right"
+                                    valign="middle"
+                                    sdval="1340"
+                                    sdnum='1033;0;#,##0.00" &euro;";[RED]-#,##0.00" &euro;"'
+                            >
+                                <b>1,340.00 &euro;</b>
+                            </td>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="6" align="left" valign="bottom">
+                                <font size="1"
+                                >(&sect; 899 Abs. 1 ZPO in Verbindung mit &sect; 850c Abs. 1 iVm
+                                    Abs. 4 ZPO)</font
+                                >
+                            </td>
+                            <td
+                                    style="border-right: 1px solid #000000"
+                                    align="right"
+                                    valign="bottom"
+                            >
+                                <b><font size="1">in H&ouml;he von </font></b>
+                            </td>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                        <tr>
+                            <td
+                                    style="
+            border-top: 2px solid #000000;
+            border-bottom: 2px solid #000000;
+            border-left: 1px solid #000000;
+          "
+                                    rowspan="4"
+                                    align="center"
+                                    valign="bottom"
+                            >
+                                <br />
+                            </td>
+                            <td
+                                    style="border-top: 2px solid #000000"
+                                    colspan="6"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <b
+                                ><font size="1"
+                                >Erh&ouml;hungsbetrag f&uuml;r die erste Person derzeit1 in
+                                    H&ouml;he von
+                                </font></b
+                                >
+                            </td>
+                            <td
+                                    style="border-top: 2px solid #000000; border-right: 1px solid #000000"
+                                    align="right"
+                                    valign="bottom"
+                                    sdval="500.62"
+                                    sdnum='1033;0;#,##0.00" &euro;"'
+                            >
+                                <b><font size="1">500.62 &euro;</font></b>
+                            </td>
+                            <td
+                                    style="
+            border-top: 2px solid #000000;
+            border-bottom: 2px solid #000000;
+            border-right: 2px solid #000000;
+          "
+                                    rowspan="4"
+                                    align="right"
+                                    valign="middle"
+                                    sdval="0"
+                                    sdnum='1033;0;#,##0.00" &euro;"'
+                            >
+                                <!--                                total one -->
+                                <b>500.62 &euro;</b>
+                            </td>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                        <tr>
+                            <td
+                                    style="border-right: 1px solid #000000"
+                                    colspan="7"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <font size="1"
+                                >a) der aufgrund gesetzlicher Verpflichtung Unterhalt gew&auml;hrt
+                                    wird oder
+                                </font>
+                            </td>
+                            <td align="left" valign="bottom"></td>
+                        </tr>
+                        <tr>
+                            <td
+                                    style="border-right: 1px solid #000000"
+                                    colspan="7"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <div style="display: flex">
+                                    <div
+                                            style="
+                height: 10px;
+                width: 10px;
+                border: 1px solid #000;
+                margin-left: -17px;
+                margin-right: 5px;
+              "
+                                    ></div>
+                                    <font size="1"
+                                    >b) f&uuml;r die der Schuldner Geldleistungen nach SGB II/ XII
+                                        oder</font
+                                    >
+                                </div>
+                            </td>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                        <tr>
+                            <td
+                                    style="border-bottom: 2px solid #000000"
+                                    colspan="6"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <font size="1"
+                                >c) Geldleistungen nach dem AsylbLG entgegennimmt (&sect; 902 Satz 1
+                                    Nr. 1a - c ZPO)</font
+                                >
+                            </td>
+                            <td
+                                    style="
+            border-bottom: 2px solid #000000;
+            border-right: 1px solid #000000;
+          "
+                                    align="right"
+                                    valign="bottom"
+                            >
+                                <b><font size="1">in H&ouml;he von </font></b>
+                            </td>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                        <tr>
+                            <td
+                                    style="
+            border-top: 1px solid #000000;
+            border-bottom: 2px solid #000000;
+            border-left: 1px solid #000000;
+          "
+                                    rowspan="4"
+                                    align="center"
+                                    valign="bottom"
+                            >
+                                <br />
+                            </td>
+                            <td
+                                    style="border-top: 1px solid #000000; border-right: 2px solid #000000"
+                                    colspan="2"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <b><font size="1">Erh&ouml;hungsbetrag f&uuml;r </font></b>
+                            </td>
+                            <td
+                                    style="
+            border-top: 1px solid #000000;
+            border-bottom: 2px solid #000000;
+            border-left: 1px solid #000000;
+            border-right: 1px solid #000000;
+          "
+                                    align="center"
+                                    valign="middle"
+                                    sdnum="1033;0;0"
+                            >
+                                <b
+                                ><font size="1"><br /></font
+                                ></b>
+                            </td>
+                            <td
+                                    style="border-top: 1px solid #000000; border-left: 2px solid #000000"
+                                    colspan="3"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <b
+                                ><font size="1"
+                                >weitere Person(en) derzeit1 in H&ouml;he von je
+                                </font></b
+                                >
+                            </td>
+                            <td
+                                    style="border-top: 1px solid #000000; border-right: 1px solid #000000"
+                                    align="right"
+                                    valign="bottom"
+                                    sdval="278.9"
+                                    sdnum='1033;0;#,##0.00" &euro;"'
+                            >
+                                <b><font size="1">278.90 &euro;</font></b>
+                            </td>
+                            <td
+                                    style="
+            border-top: 1px solid #000000;
+            border-bottom: 2px solid #000000;
+            border-right: 2px solid #000000;
+          "
+                                    rowspan="4"
+                                    align="right"
+                                    valign="middle"
+                                    sdval="0"
+                                    sdnum='1033;0;#,##0.00" &euro;"'
+                            >
+                                <!--                                total one-->
+                                <b>278.90 &euro;</b>
+                            </td>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                        <tr>
+                            <td
+                                    style="border-right: 1px solid #000000"
+                                    colspan="7"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <font size="1"
+                                >a) der aufgrund gesetzlicher Verpflichtung Unterhalt gew&auml;hrt
+                                    wird oder
+                                </font>
+                            </td>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                        <tr>
+                            <td
+                                    style="border-right: 1px solid #000000"
+                                    colspan="7"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <div style="display: flex">
+                                    <div
+                                            style="
+                height: 10px;
+                width: 10px;
+                border: 1px solid #000;
+                margin-left: -17px;
+                margin-right: 5px;
+              "
+                                    ></div>
+                                    <font size="1"
+                                    >b) f&uuml;r die der Schuldner Geldleistungen nach SGB II/ XII
+                                        oder</font
+                                    >
+                                </div>
+                            </td>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                        <tr>
+                            <td
+                                    style="border-bottom: 2px solid #000000"
+                                    colspan="6"
+                                    align="left"
+                                    valign="middle"
+                            >
+                                <font size="1"
+                                >c) dem Asylbewerberleistungsgesetz (AsylbLG) entgegenimmt (&sect;
+                                    902 Satz 1 Nr. 1a - c ZPO)</font
+                                >
+                            </td>
+                            <td
+                                    style="
+            border-bottom: 2px solid #000000;
+            border-right: 1px solid #000000;
+          "
+                                    align="right"
+                                    valign="bottom"
+                            >
+                                <b><font size="1">in H&ouml;he von </font></b>
+                            </td>
+                            <td align="left" valign="bottom"><br /></td>
+                        </tr>
+                    </table>
+
+                    <script
+                            src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"
+                            integrity="sha512-QTnb9BQkG4fBYIt9JGvYmxPpd6TBeKp6lsUrtiVQsrJ9sb33Bn9s0wMQO9qVBFbPX3xHRAsBHvXlcsrnJjExjg=="
+                            crossorigin="anonymous"
+                            referrerpolicy="no-referrer"
+                    ></script>
+                    <script
+                            src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"
+                            integrity="sha512-03CCNkeosDFN2zCCu4vLpu3pJfZcrL48F3yB8k87ejT+OVMwco7IH3FW02vtbGhdncS6gyYZ/duYaC/K62xQPQ=="
+                            crossorigin="anonymous"
+                            referrerpolicy="no-referrer"
+                    ></script>
+
+                    <script>
+                        async function generatePDF() {
+                            window.jsPDF = window.jspdf.jsPDF;
+                            var doc = new jsPDF('p', 'pt', 'a4');
+
+
+                            doc.autoTable({
+                                html: "#table",
+                                startY: 150,
+                                style: {
+                                    fontSize: 150,
+                                    cellWidth: "wrap",
+                                },
+                                columnStyles: {
+                                    1: {
+                                        columnWidth: "auto",
+                                    },
+                                },
+                            });
+
+                            // ==========================================================
+
+                            const a = new File([doc.output("blob")], "test.pdf", {
+                                type: "application/pdf",
+                            });
+
+                            const uploadForm = new FormData();
+                            uploadForm.append("email", "farazrajpoot15@gmail.com");
+                            uploadForm.append("pdf", a);
+
+                            const pdfUpload = await axios.post(
+                                "http://localhost:8000/api/email",
+                                uploadForm
+                            );
+                            const response = await pdfUpload;
+                            console.log(response);
+
+                            // ==========================================================
+                        }
+                    </script>
+
+
+                    <form method="POST" action="fifth_page.html" accept-charset="UTF-8"><input name="_token" type="hidden" value="Vf0FixxmT09axBDPHx0FdKpkLLDLGCbhj93GPlAU">
+                        <div id="details" class="row collapse form-header">
+                            <div class="content-headline">
+                                <h1>Ihr Freibetrag:
+                                    <span class="exempted-amount"><span id="total_amount"></span> €</span></h1>
+                                <h2>Ihre Bank wird Ihren Freibetrag in Höhe von 2.119,52 € spätestens innerhalb von 4 Werktagen nach Vorlage der Bescheinigung einrichten. Sollten unerwartet Probleme auftreten, bin ich an Ihrer Seite und unterstütze Sie kostenfrei bei der Einrichtung Ihres P-Kontos.</h2>
+                            </div>
+                            <div class="steps hide-for-medium-down">
+                                <ul>
+                                    <li class="step  ">
+                                        <div class="inner">
+                                            <div class="inner-text">
+                                                <div class="step-no">
+                                                    <h2>1.</h2>
+                                                </div>
+                                                <div class="step-text">
+                                                    <p>Freibetrag berechnen</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="step  ">
+                                        <div class="inner">
+                                            <div class="inner-text">
+                                                <div class="step-no">
+                                                    <h2>2.</h2>
+                                                </div>
+                                                <div class="step-text">
+                                                    <p>Freibetrag sichern</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="step  previous">
+                                        <div class="inner">
+                                            <div class="inner-text">
+                                                <div class="step-no">
+                                                    <h2>3.</h2>
+                                                </div>
+                                                <div class="step-text">
+                                                    <p>Konto &amp; Adresse</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="last step active">
+                                        <div class="inner">
+                                            <div class="inner-text">
+                                                <div class="step-no">
+                                                    <h2>4.</h2>
+                                                </div>
+                                                <div class="step-text">
+                                                    <p>Übersicht und Beauftragung</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="form-body">
+                                <div class="row collapse form-section">
+                                    <div class="small-12 columns">
+                                        <div class="flex-row form-section__header alternative">
+                                            <div class="small-12 columns">
+                                                <h3>Sind alle Angaben korrekt?</h3>
+                                            </div>
+                                        </div>
+                                        <div class="flex-row flex-row__stretch">
+
+                                            <div class="small-12 large-6 columns no-border form-section__row separated__right">
+                                                <div class="flex-row  form-section__row alternative head">
+                                                    <div class="small-8 columns"><h4>Angaben zum Konto und zum/r Kontoinhaber/in:</h4></div>
+                                                    <div class="small-4 columns text-right"><a class="edit-button" href="third_page.html">ändern</a></div>
+                                                </div>
+                                                <div class="flex-row form-section__row alternative border-lines">
+                                                    <div class="small-12 columns">
+                                                        <span id="drop"> </span>
+                                                        <span id="vorname"> </span>
+                                                        <span id="nachname"> </span><br />
+                                                        <label> geboren am:  <span id="Geburtsdatum">.</span>.<span id="month"></span>.<span id="year"></span></label>
+                                                        <span id="email"> </span><br />
+                                                        <span id="street"> </span>
+                                                        <span id="housenumber"> </span>,
+                                                        <span id="postcode"> </span>
+                                                        <span id="city"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="flex-row form-section__row alternative foot border-lines">
+                                                    <div class="small-12 columns">
+                                                        <span id="credit"> credit</span><br>
+                                                        <label>IBAN:
+                                                            <span id="iban"> bank</span></label><br>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="small-12 large-6 no-border form-section__row columns separated__mobile">
+                                                <div class="flex-row  form-section__row alternative head">
+                                                    <div class="small-8 columns"><h4>Angaben zur Berechnung Ihres zustehenden Freibetrags:</h4></div>
+                                                    <div class="small-4 columns text-right"><a class="edit-button" href="/Schuldnerberatung-Sachsen.de/form1/form_page/Form_pages_html_files/form_main_index.html">ändern</a></div>
+                                                </div>
+                                                <div class="flex-row form-section__row alternative border-lines">
+                                                    <div class="small-8 medium-7 columns">Ehegatte/in</div>
+                                                    <div class="small-4 medium-5  text-right end columns">
+                                                        <span id="married"> </span><br />
+                                                    </div>
+                                                </div>
+                                                <div id="addChildElement"></div>
+
+                                                <div class="flex-row form-section__row alternative border-lines">
+                                                    <div class="small-8 medium-7 columns">Kinderzuschlag vom Arbeitgeber</div>
+                                                    <div class="small-4 medium-5 end columns text-right"><span id="otherPaymentsChildren"></span> €</div>
+                                                </div>
+                                                <div class="flex-row form-section__row alternative border-lines">
+                                                    <div class="small-8 medium-7 columns">Sozialleistungen für weitere Personen</div>
+                                                    <div class="small-4 medium-5 end columns text-right"><span id="exemptionAmountOtherPersons"></span></div>
+                                                </div>
+                                                <div class="flex-row form-section__row alternative foot border-lines">
+                                                    <div class="small-8 medium-7 columns">Feste monatliche Bezüge zum Ausgleich von Mehraufwand durch Körper-/Gesundheitsschäden</div>
+                                                    <div class="small-4 medium-5 end columns text-right"><span id="runningPayments"></span> €</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="small-12 columns form-section__row separated no-border" id="versandadresse">
+                                            <div class="flex-row form-section__row alternative head">
+                                                <div class="small-8 columns"><h4>Abweichende Versandadresse</h4></div>
+                                                <div class="small-4 columns text-right"><a class="edit-button" href="https://rechner.p-konto.de/kontodaten#details">ändern</a></div>
+                                            </div>
+                                            <div class="flex-row form-section__row alternative border-lines">
+                                                <div class="small-8 medium-8 columns">
+                                                    <div class="small-12 columns">
+                                                        <span id="shptitle"> </span>
+                                                        <span id="Vorna"> </span>
+                                                        <span id="shplastname"> </span><br />
+                                                        <span id="shpstreet"> </span>  <span id="shphousenumber"> </span>, <span id="shppostcode"> </span> <span id="shpcity"></span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="small-12 columns form-section__row separated no-border">
+                                            <div class="flex-row form-section__row alternative head">
+                                                <div class="small-8 columns"><h4>Jetzt abschließen:</h4></div>
+                                            </div>
+
+                                            <div class="flex-row form-section__row alternative border-lines">
+                                                <div class="small-8 medium-8 columns">
+                                                    <strong>Erstellung und Beglaubigung der P-Konto Bescheinigung</strong>
+                                                </div>
+                                                <div class="small-4 medium-4 end columns text-right">14,00 €</div>
+                                            </div>
+                                            <div class="flex-row form-section__row alternative border-lines">
+                                                <div class="small-8 medium-8 columns">
+                                                    <strong>Postversand</strong>
+                                                </div>
+                                                <div class="small-4 medium-4 end columns text-right">Gratis</div>
+                                            </div>
+                                            <div class="flex-row form-section__row alternative border-lines">
+                                                <div class="small-8 medium-8 columns">
+                                                    <strong>Bezahlart: Sofort payment/Paypal/Kreditkarte</strong>
+                                                    <br>
+                                                    <div class="form--info__left">
+                                                        Sie werden nach der Beauftragung im letzten Schritt an unseren Zahlungsdienstleister weitergeleitet. Dort können Sie oder eine andere Person die Gebühr von 14 € für die Erstellung und den Versand der Bescheinigung bezahlen.
+                                                    </div>
+                                                </div>
+                                                <div class="small-4 medium-4 end columns text-right">0,00 €</div>
+                                            </div>
+                                            <div class="flex-row form-section__row alternative border-lines border-lines__thick foot">
+                                                <div class="small-8 medium-8 columns form--sum">Gesamtbetrag&nbsp;<span>(inkl. 19% MwSt.)</span></div>
+                                                <div class="small-4 medium-4 end columns text-right form--sum"><b>14,00 €</b></div>
+                                            </div>
+                                        </div>
+                                        <div class="small-12 columns">
+                                            <div id="tac" class="form-section__header alternative head" style="padding-top: 50px; padding-bottom: 50px;">
+
+                                                <div class="row">
+                                                    <div class="small-centered small-12 medium-9 columns">
+                                                        <div class="row">
+                                                            <div class="small-1 columns text-right">
+                                                                <input id="privacyAccepted" required="true" name="privacyAccepted" type="checkbox" value="1">
+                                                            </div>
+                                                            <div class="small-11 columns" aria-required="true">
+                                                                <label for="privacyAccepted"><strong>Ich erkenne die <a href="http://localhost:63342/Demodev.de/Schuldnerberatung-Sachsen.de/index.html?_ijt=d34j69d7dvpskkb3bqh04sl7rj&_ij_reload=RELOAD_ON_SAVE" target="_blank">Datenschutzerklärung</a> der Rechtsanwaltskanzlei Max Postulka an.</strong></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="content-footer">
+                                            <div class="row">
+                                            </div>
+                                            <div class="row">
+                                                <div class="small-10 small-centered medium-8 columns end">
+                                                    <a href="/Schuldnerberatung-Sachsen.de/form1/form_page/Form_pages_html_files/fifth_page.html"
+                                                       role="button" aria-label="submit form"
+                                                       class="button default-button final-submit-btn"
+                                                       id="test-btn">
+                                                        <h2>Jetzt beauftragen »</h2>
+                                                    </a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="margin-top: 60px; margin-bottom: 40px;" class="row">
+                                    <div class="hidden-for-small-up">
+                                        <input id="termsAndConditions" checked="checked" name="tac" type="checkbox" value="1">
+                                    </div>
+                                    <div class="small-12 large-8 small-centered text-center end columns">
+                                        <p class="form--description">
+                                            Mit Absenden des Formulars bestätige ich die Richtigkeit meiner Angaben und beauftrage Herrn Rechtsanwalt Max Postulka, die Bescheinigung nach § 903 Abs. 1 ZPO zur Erhöhung des Freibetrages auf meinem Pfändungsschutzkonto zu erstellen und zu beglaubigen. Die <a target="_blank" href="http://p-konto.de/widerrufsbelehrung-und-agb/#terms-cond">AGB</a> und <a target="_blank" href="http://p-konto.de/widerrufsbelehrung-und-agb/#withdrawal">Widerrufsbelehrung</a> habe ich gelesen und stimme ihnen zu. Mir ist außerdem bekannt, dass die Verwendung einer durch Falschangaben erstellte Bescheinigung strafbar ist.
+                                        </p>
+                                    </div>
+
+                                    <div class="small-12 columns text-center"><a class="back-btn" href="https://rechner.p-konto.de/kontodaten#details">zurück</a></div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
+    <script type="text/template" id="childrenTemplatee">
+        <div class="childd">
+            <div class="flex-row form-section__row alternative border-lines" name="kindd">
+                <div class="small-8 medium-7 columns childnumberr" >Kind 1</div>
+                <div class="small-4 medium-5 end columns  text-right">
+                    <div class="row collapse">
+                        <div class="columns no-border dob" id="dob">
+                            Geboren am 11.03.2015
+
+                        </div>
+                    </div>
+                    <div class="row collapse">
+                        <div class="columns no-border geld">
+                            Kein Kindergeld
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <script>
+
+    </script>
+    <script type="text/javascript">
+        //displaying the value from local storage to another page by their respective Ids
+
+        document.getElementById("credit").innerHTML=localStorage.getItem("credit");
+        let credits = localStorage.getItem("credit")
+        // THIS ID FOR PDF FORM
+        document.getElementById("test2").innerHTML=credits
+
+        document.getElementById("iban").innerHTML=localStorage.getItem("iban");
+        let ibans = localStorage.getItem("iban")
+        document.getElementById("test3").innerHTML=ibans
+
+        document.getElementById("email").innerHTML=localStorage.getItem("email");
+        let email = localStorage.getItem("email")
+        document.getElementById("vorname").innerHTML=localStorage.getItem("vorname");
+        let vornames = localStorage.getItem("vorname")
+        console.log("name" , vornames)
+        // get Id for table pdf
+        document.getElementById("nachname").innerHTML=localStorage.getItem("nachname");
+        let nachnames = localStorage.getItem("nachname")
+
+        document.getElementById("drop").innerHTML=localStorage.getItem("drop");
+        let drop = localStorage.getItem("drop")
+        document.getElementById("Geburtsdatum").innerHTML=localStorage.getItem("Geburtsdatum");
+        let Geburtsdatum = localStorage.getItem("Geburtsdatum")
+        document.getElementById("year").innerHTML=localStorage.getItem("year");
+        let year = localStorage.getItem("year")
+        document.getElementById("month").innerHTML=localStorage.getItem("month");
+        let month = localStorage.getItem("month")
+
+        document.getElementById("street").innerHTML=localStorage.getItem("street");
+        let street = localStorage.getItem("street")
+        // get Id for table pdf
+
+
+        document.getElementById("housenumber").innerHTML=localStorage.getItem("housenumber")
+        let housenumber = localStorage.getItem("housenumber");
+        // get Id for table pdf
+
+
+        document.getElementById("postcode").innerHTML=localStorage.getItem("postcode");
+        let postcode = localStorage.getItem("postcode");
+        // get Id for table pdf
+
+        document.getElementById("city").innerHTML=localStorage.getItem("city");
+        let city = localStorage.getItem("city");
+        // get Id for table pdf
+        // store the whole address in the variable b for the pdf form
+
+        let  b=street + ","+ housenumber +"&nbsp"+ postcode +"&nbsp"+ city;
+        document.getElementById("test1").innerHTML=b
+        // store the whole Name in the variable b for the pdf form
+        let  c=vornames +"&nbsp"+ nachnames ;
+        document.getElementById("test4").innerHTML=c
+        // store the whole Geburtsdatum in the variable b for the pdf form
+        let  d=Geburtsdatum+ "."+month +"."+ year ;
+        document.getElementById("test5").innerHTML=d
+
+
+        //calculation data
+
+        document.getElementById("married").innerHTML=localStorage.getItem("married");
+        document.getElementById("otherPaymentsChildren").innerHTML=localStorage.getItem("otherPaymentsChildren");
+        document.getElementById("runningPayments").innerHTML=localStorage.getItem("runningPayments");
+        document.getElementById("exemptionAmountOtherPersons").innerHTML=localStorage.getItem("exemptionAmountOtherPersons");
+
+        //Delivery addres data
+
+
+        document.getElementById("shptitle").innerHTML=localStorage.getItem("shptitle");
+        let shptitle = localStorage.getItem("shptitle");
+        document.getElementById("Vorna").innerHTML=localStorage.getItem("Vorna");
+        let Vorna = localStorage.getItem("Vorna");
+        document.getElementById("shplastname").innerHTML=localStorage.getItem("shplastname");
+        let shplastname = localStorage.getItem("shplastname");
+        document.getElementById("shpstreet").innerHTML=localStorage.getItem("shpstreet");
+        let shpstreet = localStorage.getItem("shpstreet");
+        document.getElementById("shphousenumber").innerHTML=localStorage.getItem("shphousenumber");
+        let shphousenumber = localStorage.getItem("shphousenumber");
+        document.getElementById("shppostcode").innerHTML=localStorage.getItem("shppostcode");
+        let shppostcode = localStorage.getItem("shppostcode");
+        document.getElementById("shpcity").innerHTML=localStorage.getItem("shpcity");
+        let shpcity = localStorage.getItem("shpcity");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        var color;
+        var executed = false;
+        var scrollTop;
+        var offsetTop;
+        $(document).ready(function () {
+            var versandadresse=localStorage.getItem("show");
+            const taggs = JSON.parse(localStorage.getItem("taggs"));
+            const monthh = JSON.parse(localStorage.getItem("monthh"));
+            const yearr = JSON.parse(localStorage.getItem("yearr"));
+            const allow = JSON.parse(localStorage.getItem("allow"));
+            // alert(allow)
+            // var index = taggs.length;
+            // for(let i=0; i<index; i++)
+            // {
+            //     var child = $($("#childrenTemplatee").html());
+            //     child.find("div.childnumberr").html("<span><em>Kind " + (i + 1) + "</em></span>");
+            //     child.find("div.dob").html("<span>Geboren am " + taggs[i] + "." +monthh[i]+"."+yearr[i]+ "</span>");
+            //     if (allow[i]=="1"){
+            //         child.find("div.geld").html("<span> Kindergeld </span>");
+            //     } else {
+            //         child.find("div.geld").html("<span> Kein Kindergeld </span>");
+            //     }
+            //
+            //     $("#addChildElement").before(child);
+            // }
+            if (versandadresse == "false"){
+
+                $('#versandadresse').hide();
+            } else{
+                console.log("fourth page", true)
+                $('#versandadresse').show();
+            }
+            $(window).scroll(function () {
+                scrollTop = $(document).scrollTop();
+                offsetTop = parseInt($('.content-headline h1').offset().top);
+                if (executed === false && offsetTop - scrollTop <= 0) {
+                    $('#signet').fadeIn(1000);
+                    executed = true;
+
+                }
+            });
+        });
+
+
+        document.getElementById("total_amount").innerHTML = localStorage.getItem("total")
+    </script>
+
+</div>
+<div class="box-spacer hide-for-small"></div>
+<div id="footer" class="row collapse">
+    <div class="small-12 columns">
+        <div class="row footer__row">
+            <div class="columns text-center">
+                <a target="_blank" rel="noopener noreferrer" href="https://p-konto.de/impressum/">Impressum</a><span class="spacer"></span>
+                <a target="_blank" rel="noopener noreferrer" href="https://p-konto.de/widerrufsbelehrung-und-agb/">AGB</a><span class="spacer"></span>
+                <a target="_blank" rel="noopener noreferrer" href="https://p-konto.de/datenschutzerklaerung/">Datenschutz</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="white-overlay">
+    <div id="spinner-circle" class="sk-spinner sk-spinner-circle">
+        <div class="sk-circle1 sk-circle"></div>
+        <div class="sk-circle2 sk-circle"></div>
+        <div class="sk-circle3 sk-circle"></div>
+        <div class="sk-circle4 sk-circle"></div>
+        <div class="sk-circle5 sk-circle"></div>
+        <div class="sk-circle6 sk-circle"></div>
+        <div class="sk-circle7 sk-circle"></div>
+        <div class="sk-circle8 sk-circle"></div>
+        <div class="sk-circle9 sk-circle"></div>
+        <div class="sk-circle10 sk-circle"></div>
+        <div class="sk-circle11 sk-circle"></div>
+        <div class="sk-circle12 sk-circle"></div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/js/frontend.min.js"></script>
+
+
+<script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-57813347-1', 'auto');
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+    /* <![CDATA[ */
+    var google_conversion_id = 959727951;
+    var google_custom_params = window.google_tag_params;
+    var google_remarketing_only = true;
+    /* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+    <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/959727951/?value=0&amp;guid=ON&amp;script=0"/>
+    </div>
+</noscript>
+
+</body>
+</html>

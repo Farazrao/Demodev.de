@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="de">
+  
+
+<head>
+  <title>P-Konto als pfändungsfreies Konto mit erhöhtem Freibetrag.</title>
+    <meta name="description" content="Nach der Umwandlung Ihres Kontos in ein pfändungsfreies P-Konto haben Sie nur einen Grundfreibetrag in Höhe von 1.340,00 €. Ich erstelle als Rechtsanwalt eine Bescheinigung zur Erhöhung des Freibetrages." />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="robots" content="index, follow" />
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../../bundles/form_css/default.min.css"/>
+
+  <link rel="stylesheet" type="text/css" href="/Schuldnerberatung-Sachsen.de/bundles/website_css/index.css">
+          <script src="/Schuldnerberatung-Sachsen.de/modules/js/head.min.js"></script>
+    <!-- Start of rechtsanwalt-postulka Zendesk Widget script -->
+    <script id="ze-snippet" src="../../static.zdassets.com/ekr/snippet19a2.js?key=e1ca9440-ea0d-409c-aa66-ca78e3d641bb"> </script>
+<!--  <script src="../modules/CertElement.js"></script>-->
+<!--  <script src="../modules/Certificate.js"></script>-->
+<!--  <script src="../modules/legacy-ui.js.js"></script>-->
+  <!-- End of rechtsanwalt-postulka Zendesk Widget script -->
+  <script>
+
+    $(document).ready(function () {
+      var amounts = new Amounts(
+              250,
+              [219,219,225],
+              1340,
+              [500.62,278.9,278.9,278.9,278.9]
+      );
+    function addChild() {
+      var index = $("div.child").length;
+      var child = $($("#childrenTemplate").html().replace(new RegExp("__INDEX__", "g"), index));
+      child.find("div.childNumber").html("<span><em>Kind " + (index + 1) + "</em></span>");
+      $("#addChildElement").before(child);
+
+      return child;
+
+    }
+    function removeChild(el) {
+      $(el).remove();
+    }
+    function Certificate(amounts) {
+
+      if (!amounts instanceof Amounts) {
+        throw new TypeError("Amounts object needed!");
+      }
+      this.elements = {};
+      this.amounts = amounts;
+      var that = this;
+      function addElement  (element) {
+        var tEl = new CertElement(element),
+                that = this;
+        if (!$(tEl.subject).hasClass("dont-calc")) {
+          $(tEl.subject).change(function () {
+            calculate(amounts);
+          });
+          $(tEl.subject).keyup(function () {
+            calculate(amounts);
+            if ($(this).is("input") && $(this).attr("type") === "text") {
+              $(this).val($(this).val().replace(",", "."));
+            }
+          });
+        }
+        this.elements[tEl.name] = tEl;
+      };
+      $(".cert-box").each(function () {
+        addElement(this);
+      });
+      adjustChildrenAmount=function (){
+
+        var needed = parseInt($("#childrenAmount").val()),
+                existingChildren = $("div.child"),
+                amount = existingChildren.length;
+        if (needed < amount) {
+          for (var i = amount; i > needed; i--) {
+            existingChildren = $("div.child");
+            existingChildren.last().remove();
+            this.removeElement("children." + (i - 1) + ".allowance");
+          }
+        } else if (needed > amount) {
+          for (var i = 0; i < needed - amount; i++) {
+            addElement(addChild());
+          }
+        }
+
+        if (needed === 0 && amount > 0) {
+          $("#otherPaymentsChildrenRow").remove();
+          this.removeElement("otherPaymentsChildren");
+        } else if (needed > 0 && amount === 0) {
+          var otherPaymentsChildren = $($("#otherPaymentsChildrenTemplate").html());
+          console.log("other " , otherPaymentsChildren)
+          otherPaymentsChildren.find('input[type="text"][name="otherPaymentsChildren"]').val(0);
+          addElement(otherPaymentsChildren);
+          $("#addChildElement").after(otherPaymentsChildren);
+        }
+        calculate(amounts);
+      }
+      $(this.elements.childrenAmount.subject).change(function () {
+        adjustChildrenAmount();
+      });
+    }
+
+    /**
+     * @param {Object} element
+     */
+
+
+    /**
+     * @param {string} name
+     */
+    Certificate.prototype.removeElement = function (name) {
+      if (typeof this.elements[name] === "undefined") {
+        throw new Error("No element with name " + name + " exists!");
+      }
+      delete this.elements[name];
+    };
+
+ Certificate.prototype={
+
+ }
+    /**
+     * @returns {void}
+     */
+     function calculate(amounts) {
+       amounts=this.amounts
+
+      var otherExemptionsCount = 0,
+              childAllowanceCount = 0,
+              exemptedAmount = amounts.basicExemptionAmount,
+              tSum;
+      this.elements.married.setSum(0);
+      if (this.elements.married.getValue() === 1) {
+        tSum = amounts.calculateOtherExemptionAmount(otherExemptionsCount);
+
+        exemptedAmount += tSum;
+        this.elements.married.setSum(tSum);
+        otherExemptionsCount++;
+      }
+
+      var childrenAmount = this.elements.childrenAmount.getValue();
+      if (childrenAmount > 0) {
+        for (var i = 0; i < childrenAmount; i++) {
+          tSum = 0;
+          this.elements["children." + i + ".allowance"].setSum(tSum);
+          if (this.elements["children." + i + ".allowance"].getValue() === 1) {
+            tSum += amounts.calculateChildAllowance(childAllowanceCount);
+            childAllowanceCount++;
+          }
+          tSum += amounts.calculateOtherExemptionAmount(otherExemptionsCount);
+          exemptedAmount += tSum;
+          this.elements["children." + i + ".allowance"].setSum(tSum);
+          otherExemptionsCount++;
+        }
+        tSum = this.elements.otherPaymentsChildren.getValue();
+        if (isNaN(tSum)) {
+          tSum = 0;
+        }
+        exemptedAmount += tSum;
+
+        localStorage.setItem("total", exemptedAmount)
+        this.elements.otherPaymentsChildren.setSum(tSum);
+      }
+      var exemptionAmountOtherPersons = this.elements.exemptionAmountOtherPersons.getValue();
+      var otherExemptionsSum = 0;
+      for (var i = 0; i < exemptionAmountOtherPersons; i++) {
+        otherExemptionsSum += amounts.calculateOtherExemptionAmount(otherExemptionsCount);
+        otherExemptionsCount++;
+      }
+      exemptedAmount += otherExemptionsSum;
+
+      this.elements.exemptionAmountOtherPersons.setSum(otherExemptionsSum);
+      tSum = this.elements.runningPayments.getValue();
+    console.log("111" ,exemptedAmount )
+    console.log("222" , tSum)
+      if (isNaN(tSum)) {
+        tSum = 0;
+      }
+      exemptedAmount += tSum;
+      localStorage.setItem("total", exemptedAmount)
+      console.log("final" , exemptedAmount)
+
+      this.elements.runningPayments.setSum(tSum);
+    }
+
+      Certificate(amounts)
+    })
+
+  </script>
+  </script>
+<script>
+  $(document).ready(function () {
+    $("#submit-btn").click(function (e) {
+      e.preventDefault();
+      var $form = $(this).closest('form');
+      var $privacy = $('#privacyAccepted', $form);
+
+      if ($privacy.length && !$privacy[0].checked) {
+        var $label = $('[for="privacyAccepted"]', $form);
+        var $link = $('a', $label);
+
+        $label.css('color', 'red');
+        $link.css({
+          'color': 'red',
+          'text-decoration': 'underline'
+        });
+
+        return;
+      }
+
+
+      $form.submit();
+      $('#spinner-circle').show();
+      $('#white-overlay').show();
+    });
+
+    $('[data-toggle]').on('click', function (e) {
+      e.preventDefault();
+      var tgtSel = $(e.currentTarget).attr('data-toggle');
+      $(tgtSel).slideToggle(300);
+    });
+
+    $('.navbar--toggle').on('click', function (e) {
+      e.preventDefault();
+      $('.navbar .nav ul').toggleClass('active');
+      $('.burgermeister').toggleClass('active');
+    });
+
+    $(document).foundation({
+      tooltip: {
+        selector: '.has-tip',
+        additional_inheritable_classes: [],
+        tooltip_class: '.tooltip',
+        touch_close_text: 'tap to close',
+        disable_for_touch: false,
+        tip_template: function tip_template(selector, content) {
+          return '<span data-selector="' + selector + '" class="' + Foundation.libs.tooltip.settings.tooltip_class.substring(1) + '">' + content + '</span>';
+        }
+      }
+    });
+
+    $('[data-modal]').modal();
+  });
+
+</script>
+
+  </head>
+
+  <body>
+
+  <div id="header" class="header">
+    <img class="logo" src="/Schuldnerberatung-Sachsen.de/assets/main_page_img/logo%20(1).png" /> <a class="b" href="http://localhost:63342/Demodev.de/Schuldnerberatung-Sachsen.de/index.html">Schuldnerberatung</a>
+  </div>
+
+  <div id="content" class="content">
+    <div class="small-12 medium-10 large-9 medium-centered columns">
+      <div class="row header__row row__flex">
+        <img class="avatar-image" src="" alt="" />
+        <p>
+          Berechnen Sie jetzt Ihren individuellen Freibetrag bei einer Kontopfändung in dem Sie die folgenden vier einfachen Fragen beantworten:
+        </p>
+      </div>
+    </div>
+    <div class="row collapse make-relative">
+      <div class="small-12 medium-10 large-9 medium-centered columns">
+        <div class="row collapse content-wrapper">
+          <div class="small-12 columns">
+
+            <form method="POST" action="seconf_page.html"
+                  accept-charset="UTF-8"
+                  id="certificationForm" class="custom">
+              <input name="_token" type="hidden" value="Mw9J0TY0JAwgUg4CqE4EgSsjuUjqWFq6ePc0Bsne">
+            <div id="details" class="row collapse form-header">
+              <div class="steps hide-for-medium-down">
+  <ul>
+    <li class="step active ">
+      <div class="inner">
+        <div class="inner-text">
+          <div class="step-no">
+            <h2>1.</h2>
+          </div>
+          <div class="step-text">
+            <p>Freibetrag berechnen</p>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="step  ">
+      <div class="inner">
+        <div class="inner-text">
+          <div class="step-no">
+            <h2>2.</h2>
+          </div>
+          <div class="step-text">
+            <p>Freibetrag sichern</p>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="step  ">
+      <div class="inner">
+        <div class="inner-text">
+          <div class="step-no">
+            <h2>3.</h2>
+          </div>
+          <div class="step-text">
+            <p>Konto &amp; Adresse</p>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="last step ">
+      <div class="inner">
+        <div class="inner-text">
+          <div class="step-no">
+            <h2>4.</h2>
+          </div>
+          <div class="step-text">
+            <p>Übersicht und Beauftragung</p>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>            </div>
+            <div class="form-body">
+
+              <div class="row collapse form-section">
+                <div class="small-12 columns">
+                  <div class="flex-row form-section__header wrap">
+                    <div class="small-8 medium-8 columns">
+                      <h2>Ihr automatischer monatlicher Grundfreibetrag nach der Umwandlung</h2>
+                    </div>
+                    <div class="small-4 medium-4 columns amount">
+                      <h2><span class="sum">1.340,00</span>&nbsp;€</h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row collapse form-section">
+                <div class="small-12 columns">
+                  <div class="flex-row form-section__header">
+                    <div class="small-12 medium-10 columns">
+                      <h2>Weitere monatliche Freibeträge berechnen</h2>
+                    </div>
+                    <div class="medium-2 columns amount show-for-medium-up">&nbsp;</div>
+                  </div>
+                  <div class="form-section__body">
+                    <div class="flex-row form-section__row cert-box wrap">
+                      <div class="small-12 medium-10 columns">
+                        <div class="row collapse">
+                          <div class="small-6 medium-6 columns question"><span>Sind Sie verheiratet und leben Sie mit Ihrem Ehegatten zusammen oder zahlen Sie an Ihren getrennt lebenden Ehegatten Unterhalt?</span></div>
+                          <div class="small-4 medium-4 columns form-element">
+                            <span class="" style="white-space: nowrap;">
+                              <input id="married-yes" class="subject " name="married" type="radio" value="Ja" >
+                              <label for="married-yes" >Ja</label>
+                              <input id="married-no" class="subject" name="married" type="radio" value="Nein"><label for="married-no" class="no-label">Nein</label>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="show-for-medium-up medium-2 columns amount">
+                      </div>
+                    </div>
+                    <div id="childrenAmountRow" class="flex-row form-section__row cert-box wrap separated">
+                      <div class="small-12 medium-10 columns">
+                        <div class="row collapse">
+                          <div class="small-6 medium-6 columns question">
+                            <span>Haben Sie leibliche minderjährige oder volljährige Kinder in Ausbildung in Ihrem Haushalt oder zahlen Sie an Ihre Kinder Unterhalt?</span></div>
+                          <div class="show-for-medium-up small-2 medium-2 columns description">
+                            <label for="childrenAmount">Anzahl</label></div>
+                          <div class="small-offset-1 small-3 medium-offset-0 medium-2 columns form-element" >
+                            <select id="childrenAmount" class="subject dont-calc" name="childrenAmount" required>
+                              <option value="0" selected="selected">0</option>
+                              <option value="1" >1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="show-for-medium-up medium-2 columns amount">
+                      </div>
+                    </div>
+                                        <div id="addChildElement"></div>
+                                        <div class="flex-row form-section__row cert-box wrap separated">
+                      <div class="small-12 medium-10 columns">
+                        <div class="row collapse">
+                          <div class="small-6 medium-6 columns question"><span>Leben außer Ihnen selbst und den vorgenannten Personen (Ehepartner/in oder leibliche/s Kind/er) noch weitere Personen mit in Ihrem Haushalt, für die Sie Sozialleistungen auf Ihr Konto erhalten z. B. vom Jobcenter?</span></div>
+                          <div class="show-for-medium-up medium-2 columns description"><label for="exemptionAmountOtherPersons">Anzahl</label></div>
+                          <div class="small-offset-1 small-3 medium-offset-0 medium-2 columns form-element">
+                            <select id="exemptionAmountOtherPersons" class="subject" name="exemptionAmountOtherPersons">
+                              <option value="0" selected="selected">0</option>
+
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="show-for-medium-up medium-2 columns amount">
+                      </div>
+                    </div>
+                    <div class="flex-row form-section__row cert-box wrap separated">
+                      <div class="small-12 medium-10 columns">
+                        <div class="row collapse">
+                          <div class="small-6 medium-6 columns question">
+                            <span>Erhalten Sie feste monatliche Bezüge zum Ausgleich von Mehraufwand durch Körper- und Gesundheitsschäden?</span>
+                          </div>
+                          <div class="show-for-medium-up medium-2 columns description">
+                            <label for="runningPayments">Betrag</label>
+                          </div>
+                          <div class="small-offset-1 small-3 medium-offset-0 medium-2 columns form-element">
+                            <input id="runningPayments" class="subject" name="runningPayments" type="text" value="0">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="show-for-medium-up medium-2 columns amount">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row collapse info show-for-medium-up">
+                <div class="small-10 small-centered columns end"><p>Beziehen Sie zusätzlich einmalige Sozialleistungen wie z.B. Zuschüsse zu Klassenfahrten, Darlehen für Umzugshilfen oder Kautionen vom Jobcenter etc., dann legen Sie den Bewilligungsbescheid Ihrer Bank vor. Ihre Bank wird dann einen einmaligen zusätzlichen Freibetrag für den entsprechenden Monat gewähren.</p></div>
+              </div>
+            </div>
+            <div class="content-footer">
+              <div class="row">
+                <div class="small-10 small-centered medium-8 columns end">
+                  <a role="button" aria-label="submit form" class="button default-button" id="submit-btn"  onclick="getData()">
+                    <h2>Freibetrag berechnen</h2>
+                  </a>
+
+<!--                  <button id="submit-btn">Click Here</button>-->
+                </div>
+              </div>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div id="modal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <h2 id="modalTitle">Awesome. I have it.</h2>
+    <p class="lead">Your couch.  It is mine.</p>
+    <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div>
+
+    <script type="text/template" id="childrenTemplate">
+        <div class="child">
+      <div class="flex-row form-section__row separated child-row wrap">
+        <div class="small-3 medium-3 medium-offset-0 columns childNumber"><span><em>Kind 1</em></span></div>
+        <div class="small-9 medium-3 columns description"><label>Geburtsdatum</label></div>
+        <div class="small-9 small-offset-3 medium-4 medium-offset-0 columns">
+          <div class="row collapse ">
+            <div class="small-4 columns input">
+              <select class="day" name="tagg" id="tagg" >
+              <option value="" selected="selected" id="tag">Tag</option>
+              <option value="01">1</option><option value="02">2</option><option value="03">3</option><option value="04">4</option><option value="05">5</option><option value="06">6</option><option value="07">7</option><option value="08">8</option><option value="09">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select></div>
+            <div class="small-4 columns input">
+              <select class="month" name="monthh" id="monthh">
+                <option value="" selected="selected" id="monat">Monat</option>
+                <option value="01">1</option><option value="02">2</option><option value="03">3</option><option value="04">4</option><option value="05">5</option><option value="06">6</option><option value="07">7</option><option value="08">8</option><option value="09">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select></div>
+            <div class="small-4 columns input">
+              <select class="year" name="yearr" id="yearr">
+              <option value="" selected="selected" id="jahr">Jahr</option>
+              <option value="2022">2022</option><option value="2021">2021</option><option value="2020">2020</option><option value="2019">2019</option><option value="2018">2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option><option value="2014">2014</option><option value="2013">2013</option><option value="2012">2012</option><option value="2011">2011</option><option value="2010">2010</option><option value="2009">2009</option><option value="2008">2008</option><option value="2007">2007</option><option value="2006">2006</option><option value="2005">2005</option><option value="2004">2004</option><option value="2003">2003</option><option value="2002">2002</option><option value="2001">2001</option><option value="2000">2000</option><option value="1999">1999</option><option value="1998">1998</option><option value="1997">1997</option><option value="1996">1996</option><option value="1995">1995</option><option value="1994">1994</option><option value="1993">1993</option><option value="1992">1992</option><option value="1991">1991</option><option value="1990">1990</option><option value="1989">1989</option><option value="1988">1988</option><option value="1987">1987</option><option value="1986">1986</option><option value="1985">1985</option><option value="1984">1984</option><option value="1983">1983</option><option value="1982">1982</option><option value="1981">1981</option><option value="1980">1980</option><option value="1979">1979</option><option value="1978">1978</option><option value="1977">1977</option><option value="1976">1976</option><option value="1975">1975</option><option value="1974">1974</option><option value="1973">1973</option><option value="1972">1972</option><option value="1971">1971</option><option value="1970">1970</option><option value="1969">1969</option><option value="1968">1968</option><option value="1967">1967</option><option value="1966">1966</option><option value="1965">1965</option><option value="1964">1964</option><option value="1963">1963</option><option value="1962">1962</option><option value="1961">1961</option><option value="1960">1960</option><option value="1959">1959</option><option value="1958">1958</option><option value="1957">1957</option><option value="1956">1956</option><option value="1955">1955</option><option value="1954">1954</option><option value="1953">1953</option><option value="1952">1952</option><option value="1951">1951</option><option value="1950">1950</option><option value="1949">1949</option><option value="1948">1948</option><option value="1947">1947</option><option value="1946">1946</option><option value="1945">1945</option><option value="1944">1944</option><option value="1943">1943</option><option value="1942">1942</option><option value="1941">1941</option><option value="1940">1940</option><option value="1939">1939</option><option value="1938">1938</option><option value="1937">1937</option><option value="1936">1936</option><option value="1935">1935</option><option value="1934">1934</option><option value="1933">1933</option><option value="1932">1932</option><option value="1931">1931</option><option value="1930">1930</option><option value="1929">1929</option><option value="1928">1928</option><option value="1927">1927</option><option value="1926">1926</option><option value="1925">1925</option><option value="1924">1924</option><option value="1923">1923</option><option value="1922">1922</option><option value="1921">1921</option><option value="1920">1920</option><option value="1919">1919</option><option value="1918">1918</option><option value="1917">1917</option><option value="1916">1916</option><option value="1915">1915</option><option value="1914">1914</option><option value="1913">1913</option><option value="1912">1912</option><option value="1911">1911</option><option value="1910">1910</option><option value="1909">1909</option><option value="1908">1908</option><option value="1907">1907</option><option value="1906">1906</option><option value="1905">1905</option><option value="1904">1904</option><option value="1903">1903</option><option value="1902">1902</option><option value="1901">1901</option><option value="1900">1900</option></select></div>
+          </div>
+        </div>
+        <div class="small-12 medium-2 columns amount show-for-medium-up"></div>
+      </div>
+      <div class="flex-row form-section__row child-row cert-box wrap">
+        <div class="small-6 medium-6 columns question"><span>Erhalten Sie für dieses Kind Kindergeld auf Ihr Konto?</span></div>
+        <div class="small-6 medium-4 columns form-element">
+          <span class="" style="white-space: nowrap;">
+            <input id="child__INDEX__-allowance-yes" class="subject allow" name="children[__INDEX__][allowance]"  type="radio" value="1"><label for="child__INDEX__-allowance-yes">Ja</label>
+            <input id="child__INDEX__-allowance-no" class="subject allow" name="children[__INDEX__][allowance]" type="radio" value="0"><label for="child__INDEX__-allowance-no">Nein</label>
+          </span>
+        </div>
+
+        <div class="medium-2 columns amount show-for-medium-up"><h2 class="hide">+<span class="sum">0,00</span>&nbsp;€</h2></div>
+      </div>
+    </div>
+
+    </script>
+    <script type="text/template" id="otherPaymentsChildrenTemplate">
+        <div id="otherPaymentsChildrenRow" class="flex-row form-section__row cert-box wrap separated">
+      <div class="small-12 medium-10 columns">
+        <div class="row collapse">
+          <div class="small-8 medium-6 columns question">
+            <span>Beziehen Sie einen Kinderzuschlag vom Arbeitgeber?</span>
+          </div>
+          <div class="show-for-medium-up medium-4 columns description">
+            <label for="otherPaymentsChildren">Betrag</label></div>
+          <div class="small-offset-1 small-3 medium-offset-0 medium-2 columns form-element">
+            <input id="otherPaymentsChildren" class="subject" name="otherPaymentsChildren" type="text" value="0">
+          </div>
+        </div>
+      </div>
+      <div class="show-for-medium-up medium-2 columns amount">
+        <h2 class="hide">+<span class="sum">0,00</span>&nbsp;€</h2>
+      </div>
+    </div>
+
+    </script>
+
+
+    </div>
+    <div class="box-spacer hide-for-small"></div>
+<div id="footer" class="row collapse">
+  <div class="small-12 columns">
+    <div class="row footer__row">
+      <div class="columns text-center">
+        <a target="_blank" rel="noopener noreferrer" href="https://p-konto.de/impressum/">Impressum</a><span class="spacer"></span>
+        <a target="_blank" rel="noopener noreferrer" href="https://p-konto.de/widerrufsbelehrung-und-agb/">AGB</a><span class="spacer"></span>
+        <a target="_blank" rel="noopener noreferrer" href="https://p-konto.de/datenschutzerklaerung/">Datenschutz</a>
+      </div>
+    </div>
+  </div>
+</div>
+    <div id="white-overlay">
+      <div id="spinner-circle" class="sk-spinner sk-spinner-circle">
+        <div class="sk-circle1 sk-circle"></div>
+        <div class="sk-circle2 sk-circle"></div>
+        <div class="sk-circle3 sk-circle"></div>
+        <div class="sk-circle4 sk-circle"></div>
+        <div class="sk-circle5 sk-circle"></div>
+        <div class="sk-circle6 sk-circle"></div>
+        <div class="sk-circle7 sk-circle"></div>
+        <div class="sk-circle8 sk-circle"></div>
+        <div class="sk-circle9 sk-circle"></div>
+        <div class="sk-circle10 sk-circle"></div>
+        <div class="sk-circle11 sk-circle"></div>
+        <div class="sk-circle12 sk-circle"></div>
+      </div>
+    </div>
+
+          <script type="text/javascript" src="/Schuldnerberatung-Sachsen.de/modules/js/frontend.min.js"></script>
+          
+    
+  <script type="text/javascript">
+
+    function getData(){
+      var married = document.getElementsByName("married");
+      //saving the values in local storage
+      for (i=0; i<married.length;i++)
+      {
+        if (married[i].checked){
+          localStorage.setItem("married", married[i].value);
+        }
+      }
+
+
+      var otherPaymentsChildren = document.getElementById("otherPaymentsChildren").value;
+      var runningPayments = document.getElementById("runningPayments").value;
+      var exemptionAmountOtherPersons = document.getElementById("exemptionAmountOtherPersons").value;
+      var tagg = document.getElementsByName("tagg");
+      let tag_arr=[];
+      for(let i = 0;i < tagg.length; i++)
+      {
+        tag_arr.push(parseInt(tagg[i].value) );
+      }
+      localStorage.setItem("taggs", JSON.stringify(tag_arr));
+
+      var monthh = document.getElementsByName("monthh");
+
+      let monthh_arr=[];
+      for(let i = 0;i < monthh.length; i++)
+      {
+
+        monthh_arr.push(parseInt(monthh[i].value) );
+      }
+      localStorage.setItem("monthh", JSON.stringify(monthh_arr));
+
+      var yearr = document.getElementsByName("yearr");
+      let yearr_arr=[];
+      for(let i = 0;i < yearr.length; i++)
+      {
+        yearr_arr.push(parseInt(yearr[i].value) );
+      }
+      localStorage.setItem("yearr", JSON.stringify(yearr_arr));
+
+      var allowance = document.getElementsByClassName("allow");
+      let allow=[];
+      for(var i = 0, l = allowance.length; i < l; ++i) {
+        if(allowance[i].checked) {
+          allow.push(parseInt(allowance[i].value) );
+        }
+      }
+      localStorage.setItem("allow", JSON.stringify(allow));
+      //saving the values in local storage
+      localStorage.setItem("jahr", jahr);
+      localStorage.setItem("tag", tag);
+      localStorage.setItem("monat", monat);
+      localStorage.setItem("otherPaymentsChildren", otherPaymentsChildren);
+      localStorage.setItem("runningPayments", runningPayments);
+      localStorage.setItem("exemptionAmountOtherPersons", exemptionAmountOtherPersons);
+      localStorage.setItem("childrenTemplate", childrenTemplate);
+
+
+
+    }
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-57813347-1', 'auto');
+  ga('set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+  </script>
+  <script type="text/javascript">
+  /* <![CDATA[ */
+  var google_conversion_id = 959727951;
+  var google_custom_params = window.google_tag_params;
+  var google_remarketing_only = true;
+  /* ]]> */
+  </script>
+  <script type="text/javascript" src="../../www.googleadservices.com/pagead/f.txt">
+  </script>
+  <noscript>
+  <div style="display:inline;">
+    <img height="1" width="1" style="border-style:none;" alt="" src="http://googleads.g.doubleclick.net/pagead/viewthroughconversion/959727951/?value=0&amp;guid=ON&amp;script=0"/>
+  </div>
+  </noscript>
+
+  </body>
+</html>
